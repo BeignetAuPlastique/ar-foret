@@ -3,56 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reconstitution AR - Site Historique</title>
-  <!-- Import du composant WebAR de Google -->
-  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <title>WebAR Suivi de Marqueur</title>
+  <!-- Import d'A-Frame et MindAR -->
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
-      font-family: sans-serif;
-    }
-    model-viewer {
-      width: 100%;
-      height: 100%;
-      background-color: #2a2a2a;
-    }
-    .ar-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 24px;
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
-    }
+    body { margin: 0; overflow: hidden; }
   </style>
 </head>
 <body>
 
-  <model-viewer 
-    src="mon_batiment.glb" 
-    alt="Reconstitution 3D du bâtiment historique"
-    ar 
-    ar-modes="webxr scene-viewer quick-look" 
-    camera-controls 
-    auto-rotate
-    shadow-intensity="1">
+  <!-- Scene AR liée au fichier targets.mind -->
+  <a-scene 
+    mindar-image="imageTargetSrc: ./targets.mind;" 
+    color-space="sRGB" 
+    renderer="colorManagement: true, physicallyCorrectLights" 
+    vr-mode-ui="enabled: false" 
+    device-orientation-permission-ui="enabled: false">
     
-    <button slot="ar-button" class="ar-button">
-      📍 Placer en Réalité Augmentée
-    </button>
+    <a-assets>
+      <!-- Chargement du modèle 3D GLB -->
+      <a-asset-item id="batimentModel" src="./mon_batiment.glb"></a-asset-item>
+    </a-assets>
 
-  </model-viewer>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+
+    <!-- La cible (index 0 = la 1ère image dans targets.mind) -->
+    <a-entity mindar-image-target="targetIndex: 0">
+      
+      <!-- 
+        position: X Y Z (en mètres par rapport au QR Code)
+        rotation: X Y Z (en degrés)
+        scale: Taille du modèle (ex: 0.1 0.1 0.1 si le modèle est très grand)
+      -->
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 0" 
+        rotation="90 0 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+
+    </a-entity>
+  </a-scene>
 
 </body>
 </html>
