@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reconstitution AR - Site Historique</title>
+  <!-- Import du composant WebAR de Google -->
+  <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      background-color: #2a2a2a;
+    }
+    .ar-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <model-viewer 
+    src="mon_batiment.glb" 
+    alt="Reconstitution 3D du bâtiment historique"
+    ar 
+    ar-modes="webxr scene-viewer quick-look" 
+    camera-controls 
+    auto-rotate
+    shadow-intensity="1">
+    
+    <button slot="ar-button" class="ar-button">
+      📍 Placer en Réalité Augmentée
+    </button>
+
+  </model-viewer>
+
+</body>
+</html>
