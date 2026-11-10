@@ -13,7 +13,6 @@
 </head>
 <body>
 
-  <!-- Scene AR liée au fichier targets.mind (contenant les 6 faces du cube) -->
   <a-scene 
     mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1;" 
     color-space="sRGB" 
@@ -22,68 +21,72 @@
     device-orientation-permission-ui="enabled: false">
     
     <a-assets>
-      <!-- Chargement du modèle 3D GLB -->
       <a-asset-item id="batimentModel" src="./mon_batiment.glb"></a-asset-item>
     </a-assets>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- FACE 1 - HAUT (Vue du dessus) -->
+    <!-- 
+      Pour ajuster la position exacte du bâtiment au centre du cube :
+      Remplacez (L/2) par la demi-taille du cube en mètres (ex: Z = -0.045 pour un cube de 9 cm).
+    -->
+
+    <!-- FACE 1 - HAUT (Cible horizontale au dessus du cube) -->
     <a-entity mindar-image-target="targetIndex: 0">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="0 0 0" 
-        scale="1 1 1">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- FACE 2 - NORD -->
-    <a-entity mindar-image-target="targetIndex: 1">
-      <a-gltf-model 
-        src="#batimentModel" 
-        position="0 0 0" 
+        position="0 0 -0.045" 
         rotation="90 0 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 3 - EST -->
+    <!-- FACE 2 - NORD (Cible verticale face Nord) -->
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 -0.045" 
+        rotation="0 0 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
+    <!-- FACE 3 - EST (Cible verticale face Est) -->
     <a-entity mindar-image-target="targetIndex: 2">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="90 90 0" 
+        position="0 0 -0.045" 
+        rotation="0 -90 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 4 - SUD -->
+    <!-- FACE 4 - SUD (Cible verticale face Sud) -->
     <a-entity mindar-image-target="targetIndex: 3">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="90 180 0" 
+        position="0 0 -0.045" 
+        rotation="0 180 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 5 - OUEST -->
+    <!-- FACE 5 - OUEST (Cible verticale face Ouest) -->
     <a-entity mindar-image-target="targetIndex: 4">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="90 -90 0" 
+        position="0 0 -0.045" 
+        rotation="0 90 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 6 - BAS (Optionnel si le cube est posé au sol) -->
+    <!-- FACE 6 - BAS (Cible horizontale sous le cube) -->
     <a-entity mindar-image-target="targetIndex: 5">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="180 0 0" 
+        position="0 0 -0.045" 
+        rotation="-90 0 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
