@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebAR Suivi de Marqueur</title>
+  <title>WebAR - Cube Tracking Multi-Faces</title>
   <!-- Import d'A-Frame et MindAR -->
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
@@ -13,9 +13,9 @@
 </head>
 <body>
 
-  <!-- Scene AR liée au fichier targets.mind -->
+  <!-- Scene AR liée au fichier targets.mind (contenant les 6 faces du cube) -->
   <a-scene 
-    mindar-image="imageTargetSrc: ./targets.mind;" 
+    mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 1;" 
     color-space="sRGB" 
     renderer="colorManagement: true, physicallyCorrectLights" 
     vr-mode-ui="enabled: false" 
@@ -28,22 +28,66 @@
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- La cible (index 0 = la 1ère image dans targets.mind) -->
+    <!-- FACE 1 - HAUT (Vue du dessus) -->
     <a-entity mindar-image-target="targetIndex: 0">
-      
-      <!-- 
-        position: X Y Z (en mètres par rapport au QR Code)
-        rotation: X Y Z (en degrés)
-        scale: Taille du modèle (ex: 0.1 0.1 0.1 si le modèle est très grand)
-      -->
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 0" 
+        rotation="0 0 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
+    <!-- FACE 2 - NORD -->
+    <a-entity mindar-image-target="targetIndex: 1">
       <a-gltf-model 
         src="#batimentModel" 
         position="0 0 0" 
         rotation="90 0 0" 
         scale="1 1 1">
       </a-gltf-model>
-
     </a-entity>
+
+    <!-- FACE 3 - EST -->
+    <a-entity mindar-image-target="targetIndex: 2">
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 0" 
+        rotation="90 90 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
+    <!-- FACE 4 - SUD -->
+    <a-entity mindar-image-target="targetIndex: 3">
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 0" 
+        rotation="90 180 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
+    <!-- FACE 5 - OUEST -->
+    <a-entity mindar-image-target="targetIndex: 4">
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 0" 
+        rotation="90 -90 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
+    <!-- FACE 6 - BAS (Optionnel si le cube est posé au sol) -->
+    <a-entity mindar-image-target="targetIndex: 5">
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 0" 
+        rotation="180 0 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
   </a-scene>
 
 </body>
