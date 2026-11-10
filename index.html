@@ -26,67 +26,62 @@
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-    <!-- 
-      Pour ajuster la position exacte du bâtiment au centre du cube :
-      Remplacez (L/2) par la demi-taille du cube en mètres (ex: Z = -0.045 pour un cube de 9 cm).
-    -->
-
-    <!-- FACE 1 - HAUT (Cible horizontale au dessus du cube) -->
+    <!-- FACE 1 - HAUT (Rabattue à +90° sur X par rapport au Nord) -->
     <a-entity mindar-image-target="targetIndex: 0">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
+        position="0 0 -0.045" 
+        rotation="90 0 0" 
+        scale="1 1 1">
+      </a-gltf-model>
+    </a-entity>
+
+    <!-- FACE 2 - NORD (Référence fixée : 0 0 0) -->
+    <a-entity mindar-image-target="targetIndex: 1">
+      <a-gltf-model 
+        src="#batimentModel" 
+        position="0 0 -0.045" 
         rotation="0 0 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 2 - NORD (Cible verticale face Nord) -->
-    <a-entity mindar-image-target="targetIndex: 1">
-      <a-gltf-model 
-        src="#batimentModel" 
-        position="0 0 0" 
-        rotation="-90 0 0" 
-        scale="1 1 1">
-      </a-gltf-model>
-    </a-entity>
-
-    <!-- FACE 3 - EST (Cible verticale face Est) -->
+    <!-- FACE 3 - EST (Pivotement de -90° sur Y) -->
     <a-entity mindar-image-target="targetIndex: 2">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="-90 -90 0" 
+        position="0 0 -0.045" 
+        rotation="0 -90 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 4 - SUD (Cible verticale face Sud) -->
+    <!-- FACE 4 - SUD (Pivotement de 180° sur Y) -->
     <a-entity mindar-image-target="targetIndex: 3">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="-90 180 0" 
+        position="0 0 -0.045" 
+        rotation="0 180 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 5 - OUEST (Cible verticale face Ouest) -->
+    <!-- FACE 5 - OUEST (Pivotement de +90° sur Y) -->
     <a-entity mindar-image-target="targetIndex: 4">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="-90 90 0" 
+        position="0 0 -0.045" 
+        rotation="0 90 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
 
-    <!-- FACE 6 - BAS (Cible horizontale sous le cube) -->
+    <!-- FACE 6 - BAS (Rabattue à -90° sur X) -->
     <a-entity mindar-image-target="targetIndex: 5">
       <a-gltf-model 
         src="#batimentModel" 
-        position="0 0 0" 
-        rotation="180 0 0" 
+        position="0 0 -0.045" 
+        rotation="-90 0 0" 
         scale="1 1 1">
       </a-gltf-model>
     </a-entity>
